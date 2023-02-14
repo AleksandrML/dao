@@ -24,9 +24,8 @@ public class DbWorker {
     }
 
     public List<String> getProductName(String name) {
-        return namedParameterJdbcTemplate.query(script, new MapSqlParameterSource(
-                        "name", name),
-                (RowMapper) (rs, rowNum) -> rs.getString("product_name"));
+        return namedParameterJdbcTemplate.queryForList(script, new MapSqlParameterSource(
+                        "name", name), String.class);
     }
 
     private static String read(String scriptFileName) {
